@@ -21,11 +21,11 @@ Then we computed the result on the basis of data fetched and showed on the ui us
 
 ## Demo
 
-https://maheshrautrao.github.io/Evapotranspiration-App/
+https://maheshrautrao.github.io/Evapotranspiration-Web-App
 
 ## Tech Stack
 
-`Javascript` `HTML` `CSS`
+`Javascript` `HTML` `CSS` `GeoCoder API` `Javascript Fetch` `Open-Meteo API`
 
 ## Learnings
 
