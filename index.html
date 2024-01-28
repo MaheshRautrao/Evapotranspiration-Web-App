@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Evapotranspiration App</title>
+    <link rel="icon" type="image/png" href="images/evaporation.png" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-aFq/bzH65dt+w6FI2ooMVUpc+21e0SRygnTpmBvdBgSdnuTN7QbdgL+OapgHtvPp"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- main container -->
+    <div class="body-container">
+      <!-- navbar -->
+      <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">
+            <img
+              src="./images/evaporation.png"
+              width="30"
+              height="30"
+              class="d-inline-block align-top"
+              alt=""
+            />
+            Evapotranspiration
+          </a>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <!-- <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ms-auto">
+              <li class="nav-item active">
+                <a class="nav-link" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Manual calculate</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">About</a>
+              </li>
+            </ul>
+          </div> -->
+        </div>
+      </nav>
+
+      <div class="type-container individual-containers">
+        <p>Select what you want to calculate</p>
+        <input
+          type="radio"
+          class="btn-check"
+          name="typeOfEvapotranspiration"
+          id="reference"
+          autocomplete="off"
+          value="reference"
+          checked
+        />
+        <label class="btn btn-outline-success" for="reference"
+          >Reference Evapotranspiration</label
+        >
+
+        <input
+          type="radio"
+          class="btn-check"
+          name="typeOfEvapotranspiration"
+          id="crop"
+          autocomplete="off"
+          value="crop"
+        />
+        <label class="btn btn-outline-success" for="crop"
+          >Crop Evapotranspiration</label
+        >
+
+        <div class="crop-coefficient-container hidden-containers">
+          <label for="crop-coefficient" class="crop-coefficient-group"
+            >Enter the crop-coefficient</label
+          >
+          <br />
+          <input
+            type="number"
+            name="cropCoefficient"
+            id="crop-coefficient"
+            class="crop-coefficient-group"
+          />
+        </div>
+      </div>
+
+      <div class="timeperiod-container individual-containers">
+        <div class="choose-time-period-container">
+          <p>
+            Select the time period for which you want to calculate the
+            Evapotranspiration
+          </p>
+          <input
+            type="radio"
+            class="btn-check"
+            name="timePeriod"
+            id="monthly"
+            autocomplete="off"
+            value="monthly"
+            checked
+          />
+          <label class="btn btn-outline-success" for="monthly">Monthly</label>
+
+          <input
+            type="radio"
+            class="btn-check"
+            name="timePeriod"
+            id="daily"
+            autocomplete="off"
+            value="daily"
+          />
+          <label class="btn btn-outline-success" for="daily">Daily</label>
+
+          <input
+            type="radio"
+            class="btn-check"
+            name="timePeriod"
+            id="hourly"
+            autocomplete="off"
+            value="hourly"
+          />
+          <label class="btn btn-outline-success" for="hourly">Hourly</label>
+        </div>
+        <div class="standard-clock-time-container hidden-containers">
+          <label for="input-standard-time" class="standard-clock-time-group"
+            >Enter the mid point of standard clock time for hourly calculations
+            (eg. 14.5 for calculating between 14:00 to 15:00)
+          </label>
+          <br />
+          <input
+            type="number"
+            name="standardTime"
+            id="input-standard-time"
+            class="standard-clock-time-group"
+          />
+        </div>
+      </div>
+
+      <div class="other-data-container individual-containers">
+        <div class="info-head-container">
+          <p>
+            As we are using the free version of API we have data for july 2022
+            to today's date so fill appropriately
+          </p>
+        </div>
+
+        <div class="year-container">
+          <label for="year">Enter the year (e.g 2023)</label>
+          <input type="number" id="year" name="year" />
+        </div>
+        <div class="date-container">
+          <label for="date">Enter the day of month ( between 1 - 31 )</label>
+          <input type="number" id="date" name="date" />
+        </div>
+        <div class="month-container">
+          <label for="month">Enter the month ( between 1 - 12 )</label>
+          <input type="number" id="month" name="month" />
+        </div>
+        <div class="sunshine-hours">
+          <label for="actual-sunshine-hours"
+            >Enter the actual sunshine hours</label
+          >
+          <input
+            type="number"
+            id="actual-sunshine-hours"
+            name="actualSunshineHours"
+          />
+        </div>
+      </div>
+
+      <div class="city-search-container individual-containers">
+        <input
+          type="search"
+          name="cityQuery"
+          id="city-search"
+          placeholder="Enter the city name"
+        />
+        <button
+          type="search"
+          value="Submit"
+          class="btn btn-outline-success ms-1 city-finder-btn"
+        >
+          Search
+        </button>
+      </div>
+
+      <div class="available-cities-container individual-containers">
+        <div class="row available-cities"></div>
+      </div>
+
+      <div class="final-result-container individual-containers">
+        <div class="row final-result"></div>
+      </div>
+    </div>
+    <div class="footer">
+      <div class="footer-container">
+        <div class="footer-head">Our Team :</div>
+        <div class="footer-members">
+          <div class="member-card">
+            <img src="./images/mahesh.jpg" alt="profile-photo" />
+            <p>Mahesh</p>
+          </div>
+          <div class="member-card">
+            <img src="./images/subhash.jpg" alt="profile-photo" />
+            <p>Subhash</p>
+          </div>
+          <div class="member-card">
+            <img src="./images/lagan.jpeg" alt="profile-photo" />
+            <p>Lagan</p>
+          </div>
+        </div>
+        <div class="footer-copyright">&copy WRE-Project-Team</div>
+      </div>
+    </div>
+    <!-- Jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
+    <!-- js bootstrap -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- our javascript -->
+    <script src="index.js"></script>
+  </body>
+</html>
